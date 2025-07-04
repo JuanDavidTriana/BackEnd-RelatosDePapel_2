@@ -13,10 +13,15 @@ target/
 .DS_Store
 Thumbs.db
 
-# Archivos de configuración sensibles
+# Archivos de configuración sensibles en la raíz
 *.env
-application.properties
-application-local.properties
+/application.properties
+/application-local.properties
 
 # Logs
 *.log
+
+# Permitir application.properties de microservicios
+!ms-books-catalogue/src/main/resources/application.properties
+!ms-books-payments/src/main/resources/application.properties
+!eureka-server/src/main/resources/application.properties
