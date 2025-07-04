@@ -2,9 +2,9 @@ services:
   # Eureka Server
   - type: web
     name: eureka-server
-    runtime: java
-    buildCommand: cd eureka-server && mvn clean package -DskipTests
-    startCommand: cd eureka-server && java -jar target/*.jar
+    runtime: docker
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: SERVER_PORT
         value: 8761
@@ -14,9 +14,9 @@ services:
   # Books Catalogue Service
   - type: web
     name: ms-books-catalogue
-    runtime: java
-    buildCommand: cd ms-books-catalogue && mvn clean package -DskipTests
-    startCommand: cd ms-books-catalogue && java -jar target/*.jar
+    runtime: docker
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: SERVER_PORT
         value: 8081
@@ -32,9 +32,9 @@ services:
   # Books Payments Service
   - type: web
     name: ms-books-payments
-    runtime: java
-    buildCommand: cd ms-books-payments && mvn clean package -DskipTests
-    startCommand: cd ms-books-payments && java -jar target/*.jar
+    runtime: docker
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: SERVER_PORT
         value: 8082
@@ -50,9 +50,9 @@ services:
   # API Gateway
   - type: web
     name: api-gateway
-    runtime: java
-    buildCommand: cd api-gateway && mvn clean package -DskipTests
-    startCommand: cd api-gateway && java -jar target/*.jar
+    runtime: docker
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: SERVER_PORT
         value: 8080
