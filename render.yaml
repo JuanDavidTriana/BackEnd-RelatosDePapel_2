@@ -1,0 +1,56 @@
+services:
+  - type: web
+    name: eureka-server
+    env: docker
+    plan: free
+    dockerfilePath: ./eureka-server/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+        value: http://eureka-server:8761/eureka/
+
+  - type: web
+    name: api-gateway
+    env: docker
+    plan: free
+    dockerfilePath: ./api-gateway/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+        value: http://eureka-server:8761/eureka/
+
+  - type: web
+    name: books-catalogue
+    env: docker
+    plan: free
+    dockerfilePath: ./ms-books-catalogue/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d1k0tsu3jp1c73eu37jg-a:5432/backend_relatosdepapel_tbsu
+      - key: SPRING_DATASOURCE_USERNAME
+        value: backend_relatosdepapel_tbsu_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 2m11DMf1Go7hY3JOQgjkn1tQGFkn912W
+      - key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+        value: http://eureka-server:8761/eureka/
+
+  - type: web
+    name: books-payments
+    env: docker
+    plan: free
+    dockerfilePath: ./ms-books-payments/Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: render
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d1k0tsu3jp1c73eu37jg-a:5432/backend_relatosdepapel_tbsu
+      - key: SPRING_DATASOURCE_USERNAME
+        value: backend_relatosdepapel_tbsu_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 2m11DMf1Go7hY3JOQgjkn1tQGFkn912W
+      - key: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+        value: http://eureka-server:8761/eureka/ 
