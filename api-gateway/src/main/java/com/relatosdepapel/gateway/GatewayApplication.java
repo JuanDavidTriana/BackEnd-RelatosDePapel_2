@@ -20,11 +20,11 @@ public class GatewayApplication {
                 .route("books-service", r -> r
                         .path("/api/books/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://ms-books-catalogue"))
+                        .uri("lb://books-catalogue"))
                 .route("payments-service", r -> r
                         .path("/api/payments/**")
                         .filters(f -> f.stripPrefix(1))
-                        .uri("lb://ms-books-payments"))
+                        .uri("lb://books-payments"))
                 .build();
     }
 } 
