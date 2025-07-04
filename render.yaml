@@ -4,6 +4,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./eureka-server/Dockerfile
+    buildContext: ./eureka-server
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
@@ -15,6 +16,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./api-gateway/Dockerfile
+    buildContext: ./api-gateway
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
@@ -26,6 +28,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./ms-books-catalogue/Dockerfile
+    buildContext: ./ms-books-catalogue
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
@@ -43,6 +46,7 @@ services:
     env: docker
     plan: free
     dockerfilePath: ./ms-books-payments/Dockerfile
+    buildContext: ./ms-books-payments
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
