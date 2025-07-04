@@ -1,0 +1,60 @@
+services:
+  # Eureka Server
+  - type: web
+    name: eureka-server
+    env: java
+    buildCommand: cd eureka-server && mvn clean package -DskipTests
+    startCommand: cd eureka-server && java -jar target/*.jar
+    envVars:
+      - key: SERVER_PORT
+        value: 8761
+      - key: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+        value: http://eureka-server.onrender.com/eureka/
+
+  # Books Catalogue Service
+  - type: web
+    name: ms-books-catalogue
+    env: java
+    buildCommand: cd ms-books-catalogue && mvn clean package -DskipTests
+    startCommand: cd ms-books-catalogue && java -jar target/*.jar
+    envVars:
+      - key: SERVER_PORT
+        value: 8081
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d1jl8ha4d50c7385lre0-a/books_catalogue
+      - key: SPRING_DATASOURCE_USERNAME
+        value: books_catalogue_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: a1ieV3GOZFu7s88NEfHmvy375liyDA29
+      - key: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+        value: http://eureka-server.onrender.com/eureka/
+
+  # Books Payments Service
+  - type: web
+    name: ms-books-payments
+    env: java
+    buildCommand: cd ms-books-payments && mvn clean package -DskipTests
+    startCommand: cd ms-books-payments && java -jar target/*.jar
+    envVars:
+      - key: SERVER_PORT
+        value: 8082
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d1jla76mcj7s73a08o7g-a/books_payments
+      - key: SPRING_DATASOURCE_USERNAME
+        value: books_payments_user
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: 9beJjtdB6XbywyykZkNFCqSOqhXYHWAo
+      - key: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+        value: http://eureka-server.onrender.com/eureka/
+
+  # API Gateway
+  - type: web
+    name: api-gateway
+    env: java
+    buildCommand: cd api-gateway && mvn clean package -DskipTests
+    startCommand: cd api-gateway && java -jar target/*.jar
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+        value: http://eureka-server.onrender.com/eureka/ 
