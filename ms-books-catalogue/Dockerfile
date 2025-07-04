@@ -1,20 +1,13 @@
-# Usar Java 17
-FROM eclipse-temurin:17-jdk
-
-# Establecer directorio de trabajo
+# Etapa 1: Build
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
-
-# Copiar el archivo pom.xml primero para aprovechar la caché de Docker
 COPY pom.xml .
-
-# Copiar el código fuente
 COPY src ./src
-
-# Construir la aplicación
 RUN mvn clean package -DskipTests
 
-# Exponer el puerto del servicio de catálogo
+# Etapa 2: Run
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8081
-
-# Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "target/*.jar"] 
+ENTRYPOINT ["java", "-jar", "app.jar"] 
